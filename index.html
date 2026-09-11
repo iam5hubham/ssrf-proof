@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>SSRF proof page</title></head>
+<body>
+
+<!--
+  Authorised security testing artefact.
+  MQ Assessment Planner assessment, September 2026.
+
+  This page is NOT a Macquarie Unit Guide. It reproduces only the DOM structure
+  that app/api/fetch-subject/route.ts looks for, so that a request to
+  POST /api/fetch-subject with this page's URL returns HTTP 200 and a parsed
+  payload. That demonstrates the server fetched and parsed a host that is not
+  unitguides.mq.edu.au.
+
+  Structure required by the parser:
+    .unit-guide-header-container   containing h1 "CODE – Name" and h3 "YEAR – Session N, ..."
+    #assessment-tasks-section      containing table > tbody > tr
+    each tr                        cells with classes title / weighting / hurdle / due
+  Note the header separator must be an EN DASH (U+2013), not a hyphen.
+-->
+
+<div class="unit-guide-header-container">
+  <h1>SSRF9999 &#8211; Proof Of Concept Unit</h1>
+  <h3>2026 &#8211; Session 2, Authorised Assessment</h3>
+</div>
+
+<div id="assessment-tasks-section">
+  <table>
+    <tbody>
+      <tr>
+        <td class="title"><a href="#assessment_task_ssrf_1">Server fetched a host outside unitguides.mq.edu.au</a></td>
+        <td class="weighting">100%</td>
+        <td class="hurdle">No</td>
+        <td class="due">11/09/2026</td>
+      </tr>
+      <tr>
+        <td class="title"><a href="#assessment_task_ssrf_2">Response body was parsed and returned to the caller</a></td>
+        <td class="weighting">0%</td>
+        <td class="hurdle">No</td>
+        <td class="due">11/09/2026</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
